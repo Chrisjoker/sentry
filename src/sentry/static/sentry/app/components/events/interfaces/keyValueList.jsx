@@ -4,6 +4,7 @@ import _ from 'lodash';
 
 import ContextData from '../../contextData';
 import {deviceNameMapper} from '../../../utils';
+import ExternalLink from '../../externalLink';
 
 const KeyValueList = React.createClass({
   propTypes: {
@@ -41,14 +42,37 @@ const KeyValueList = React.createClass({
         <tbody>
           {data.map(([key, value]) => {
             if (this.props.isContextData) {
-              return [
-                <tr key={key}>
-                  <td className="key">{key}</td>
-                  <td className="value">
-                    <ContextData data={!raw ? value : JSON.stringify(value)} />
-                  </td>
-                </tr>,
-              ];
+              if (key === 'traceId') {
+                return [
+                  <tr key={key}>
+                    <td className="key">{key}</td>
+                    <td className="value">
+                      <ExternalLink herf="http://kibana5.devops.xiaohongshu.com/">
+                        {value}
+                      </ExternalLink>
+                    </td>
+                  </tr>,
+                ];
+              }
+              if (key === 'sampled') {
+                if (value === 'true') {
+                  return (
+                    <ExternalLink herf="https://zipkin.devops.xiaohongshu.com/zipkin/">
+                      'Zipkin'
+                    </ExternalLink>
+                  );
+                }
+                return [];
+              } else {
+                return [
+                  <tr key={key}>
+                    <td className="key">{key}</td>
+                    <td className="value">
+                      <ContextData data={!raw ? value : JSON.stringify(value)} />
+                    </td>
+                  </tr>,
+                ];
+              }
             } else {
               return [
                 <tr key={key}>
