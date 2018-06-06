@@ -56,11 +56,8 @@ const KeyValueList = React.createClass({
               }
               if (key === 'sampled') {
                 if (value === 'true') {
-                  return (
-                    <ExternalLink herf="https://zipkin.devops.xiaohongshu.com/zipkin/">
-                      'Zipkin'
-                    </ExternalLink>
-                  );
+                  let link = `https://zipkin.devops.xiaohongshu.com/zipkin/traces/${value}`;
+                  return <ExternalLink herf={link}>'Zipkin'</ExternalLink>;
                 }
                 return [];
               } else {
