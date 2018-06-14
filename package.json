@@ -68,6 +68,7 @@
     "react-sparklines": "1.6.0",
     "react-sticky": "5.0.4",
     "reflux": "0.4.1",
+    "rison-node": "^2.0.0",
     "select2": "3.5.1",
     "sprintf-js": "1.0.3",
     "style-loader": "0.12.4",

@@ -47,7 +47,7 @@ const KeyValueList = React.createClass({
                   <tr key={key}>
                     <td className="key">{key}</td>
                     <td className="value">
-                      <ExternalLink herf="http://kibana5.devops.xiaohongshu.com/">
+                      <ExternalLink href="http://kibana5.devops.xiaohongshu.com/">
                         {value}
                       </ExternalLink>
                     </td>
@@ -57,7 +57,11 @@ const KeyValueList = React.createClass({
               if (key === 'sampled') {
                 if (value === 'true') {
                   let link = `https://zipkin.devops.xiaohongshu.com/zipkin/traces/${value}`;
-                  return <ExternalLink herf={link}>'Zipkin'</ExternalLink>;
+                  return (
+                    <td className="value">
+                      <ExternalLink href={link}>Zipkin</ExternalLink>
+                    </td>
+                  );
                 }
                 return [];
               } else {
