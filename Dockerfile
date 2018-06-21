@@ -74,6 +74,14 @@ RUN set -x \
     && rm -r "$GNUPGHOME" /usr/src/sentry \
     && apt-get purge -y --auto-remove wget g++
 
+RUN set -x \
+    && apt-get update && apt-get install -y --no-install-recommends wget g++ && rm -rf /var/lib/apt/lists/* \
+    && mkdir -p /usr/src/sentry \
+    && pip install -U sentry \
+    && sentry --help \
+    && sentry plugins list \
+    && apt-get purge -y --auto-remove wget g++
+
 ENV SENTRY_CONF=/etc/sentry \
     SENTRY_FILESTORE_DIR=/var/lib/sentry/files
 
